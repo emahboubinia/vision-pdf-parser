@@ -90,7 +90,9 @@ The script will log its progress to the console and create a `pdf_converter.log`
 The quality of the image descriptions is heavily influenced by the prompt. You can modify the `image_describing_prompt` variable in the script to tailor the AI's output to your specific needs. The default prompt is optimized for detailed, technical descriptions of scientific figures.
 
 Here's the defualt prompt:
-```markdown
+<details>
+<summary>Click to see the full default prompt</summary>
+
 Goal
 Provide extremely detailed, comprehensive descriptions of images with particular focus on charts, molecular pathways, diagrams, and information-dense visuals. Extract and describe every visible element, relationship, label, value, and structural component with maximum precision and completeness. Use highly technical and specific terminology appropriate to the subject matter.
 Return Format
@@ -151,7 +153,8 @@ Use maximum technical precision and domain-specific terminology
 Provide exact measurements, coordinates, angles, and numerical values
 Maintain systematic organization while ensuring comprehensive coverage
 Cross-reference and interconnect all related elements and their relationships
-```
+</details>
+
 ## TODO List
 - [ ] Make the CLI
 - [ ] Add picture checking to save resources by not processing useless images
