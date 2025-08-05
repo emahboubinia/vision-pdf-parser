@@ -82,7 +82,24 @@ clip_model_path = "path/to/your/clip.gguf"   # Path to the CLIP mmproj file
 ## Usage 
 Once configured, run the script from your terminal:
 ```bash
-python PDF_to_text.py
+PDF_to_text.py [-h] [--vision_model_path VISION_MODEL_PATH] [--clip_model_path CLIP_MODEL_PATH] [--prompt PROMPT] pdf_path
+```
+```bash
+python PDF_to_text.py -help
+usage: PDF_to_text.py [-h] [--vision_model_path VISION_MODEL_PATH] [--clip_model_path CLIP_MODEL_PATH] [--prompt PROMPT] pdf_path
+
+Advanced PDF to Text Converter with AI-Powered Image Description
+
+positional arguments:
+  pdf_path              Path to the PDF file
+
+options:
+  -h, --help            show this help message and exit
+  --vision_model_path VISION_MODEL_PATH
+                        Path to the Vision model (GGUF file)
+  --clip_model_path CLIP_MODEL_PATH
+                        Path to the CLIP model (GGUF file)
+  --prompt PROMPT       Prompt to use for each image
 ```
 The script will log its progress to the console and create a `pdf_converter.log` file. A temporary `images_tmp` directory will be created to store images during processing. The final output will be a `.txt` file with the same name as your input PDF, saved in the same directory.
 
@@ -156,6 +173,6 @@ Cross-reference and interconnect all related elements and their relationships
 </details>
 
 ## TODO List
-- [ ] Make the CLI
+- [x] Make the CLI
 - [ ] Add picture checking to save resources by not processing useless images
 - [ ] Add API feature for getting picture description

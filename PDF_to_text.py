@@ -24,16 +24,13 @@ import sys
 import pathlib
 import logging
 from typing import List, Dict
-
+import argparse
 
 # Variables
 pdf_path = ""                    # Path to the pdf you want to process
 model_path = ""                  # Path to the vision Model
 clip_model_path = ""             # Path to the clip model
 temp_images_dir = "images_tmp"
-
-if pdf_path == "" or model_path == "" or clip_model_path == "" or temp_images_dir == "":
-    raise Exception(f"Variable(s) isn't (aren't) set(s) Please review the variable in the {__file__}")
 
 image_describing_prompt = """
 Goal
@@ -287,4 +284,14 @@ def pdf_to_text(
     save_text(process_text,os.path.join(os.path.join(pathlib.Path(__file__).parent.resolve(),f"{txt_file_name}.txt")))
 
 if __name__ == '__main__':
-    pdf_to_text(pdf_path=pdf_path, vision_model_path=model_path, clip_model_path=clip_model_path,prompt= image_describing_prompt)
+    parser = argparse.ArgumentParser(description="Advanced PDF to Text Converter with AI-Powered Image Description")
+    parser.add_argument("pdf_path", type=str, help="Path to the PDF file")
+    parser.add_argument("--vision_model_path", type=str, default=model_path, help="Path to the Vision model (GGUF file)")
+    parser.add_argument("--clip_model_path", type=str, default=clip_model_path, help="Path to the CLIP model (GGUF file)")
+    parser.add_argument("--prompt", type=str, default=image_describing_prompt, help="Prompt to use for each image")
+    args = parser.parse_args()
+
+    if args.pdf_path == "" or args.vision_model_path == "" or args.prompt == "":
+        raise Exception(f"Variable(s) isn't (aren't) set(s) Please review the variable in the {__file__}")
+
+    pdf_to_text(pdf_path=args.pdf_path, vision_model_path=args.vision_model_path, clip_model_path=args.clip_model_path,prompt= args.prompt)
